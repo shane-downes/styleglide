@@ -1,0 +1,11 @@
+{
+  "overrides": [
+    {
+      "files": "*.mdx",
+      "options": {
+        "useTabs": false,
+        "tabWidth": 2
+      }
+    }
+  ]
+}

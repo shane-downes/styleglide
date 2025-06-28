@@ -3,12 +3,22 @@
 @import "fumadocs-ui/css/preset.css";
 @import "fumadocs-twoslash/twoslash.css";
 
-@theme inline {
-  --font-display: var(--display-family);
+@utility font-display {
+  font-family: var(--display-family);
+  font-feature-settings:
+    "ss03" on,
+    "ss05" on,
+    "ss07" on,
+    "ss08" on;
+}
+
+:root {
+  --header-height: 2.75rem;
+  --main-height: calc(100dvh - var(--header-height));
 }
 
 h1 {
-  @apply font-display font-semibold font-stretch-106%;
+  @apply font-display font-medium tracking-tight font-stretch-106%;
 }
 h2 {
   @apply font-display font-medium tracking-tight;
@@ -18,6 +28,30 @@ h4,
 h5,
 h6 {
   @apply font-medium;
+}
+
+button[data-search-full] {
+  @apply -mt-1.5;
+}
+button[data-theme-toggle] {
+  @apply cursor-pointer md:hidden;
+}
+
+pre {
+  @apply text-sm font-light tracking-wide;
+}
+
+#nd-docs-layout {
+  @apply md:mt-[var(--header-height)];
+}
+#nd-sidebar {
+  @apply top-[var(--header-height)] h-[var(--main-height)] bg-sidebar;
+}
+#nd-toc {
+  @apply top-[var(--header-height)] h-[var(--main-height)];
+}
+:has(> #nd-tocnav) {
+  @apply md:!top-[var(--header-height)];
 }
 
 .prose td {
@@ -31,18 +65,9 @@ h6 {
   @apply bg-secondary;
 }
 
-#nd-sidebar {
-  @apply bg-sidebar;
+.fd-step {
+  @apply my-12;
 }
-
-@layer base {
-  pre {
-    @apply text-sm font-light tracking-wide;
-  }
-  .fd-step {
-    @apply my-12;
-  }
-  .fd-step:before {
-    @apply border;
-  }
+.fd-step:before {
+  @apply border;
 }

@@ -1,0 +1,14 @@
+{
+  "overrides": [
+    {
+      "files": "*.mdx",
+      "options": {
+        "useTabs": false,
+        "tabWidth": 2
+      }
+    }
+  ],
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindFunctions": ["clsx", "twMerge", "cn", "cva"],
+  "tailwindStylesheet": "./packages/ui/src/styles/globals.css"
+}

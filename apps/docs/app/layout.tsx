@@ -1,10 +1,16 @@
-import "./global.css";
 import { RootProvider } from "fumadocs-ui/provider";
-import { Geist, Geist_Mono, Mona_Sans } from "next/font/google";
+import { Geist_Mono, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import type { ReactNode } from "react";
+import "./global.css";
 
-const geist = Geist({
+const inter = Inter({
   subsets: ["latin"],
+});
+
+const mona_sans = localFont({
+  src: "../fonts/MonaSans[wdth,wght].ttf",
+  variable: "--display-family",
 });
 
 const geist_mono = Geist_Mono({
@@ -13,23 +19,14 @@ const geist_mono = Geist_Mono({
   variable: "--font-mono",
 });
 
-const mona_sans = Mona_Sans({
-  subsets: ["latin"],
-  weight: "variable",
-  display: "block",
-  style: "normal",
-  axes: ["wdth"],
-  variable: "--display-family",
-});
-
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${geist.className} ${mona_sans.variable} ${geist_mono.variable} antialiased`}
+      className={`${inter.className} ${mona_sans.variable} ${geist_mono.variable} antialiased`}
       suppressHydrationWarning
     >
-      <body className="flex flex-col min-h-screen">
+      <body className="flex min-h-screen flex-col">
         <RootProvider>{children}</RootProvider>
       </body>
     </html>

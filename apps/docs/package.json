@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "next build",
-    "dev": "next dev --turbo",
+    "dev": "next dev --turbo -p 3001",
     "start": "next start",
     "postinstall": "fumadocs-mdx"
   },
@@ -18,7 +18,9 @@
     "fumadocs-twoslash": "^3.1.3",
     "fumadocs-ui": "15.4.2",
     "lucide-react": "^0.513.0",
+    "motion": "^12.9.2",
     "next": "15.3.2",
+    "next-themes": "^0.4.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "twoslash": "^0.3.1"

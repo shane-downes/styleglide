@@ -23,4 +23,4 @@ jobs:
           cache: "pnpm"
 
       - run: pnpm install --frozen-lockfile
-      - run: turbo run lint build --filter=@styleglide/theme-editor
+      - run: npx turbo run lint build

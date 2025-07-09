@@ -11,15 +11,6 @@ import {
   TabsContent,
 } from "@workspace/ui/components/tabs";
 
-## How It Works
-
-1. A button is loaded into your app that activates the theme editor
-2. StyleGlide generates shadcn/ui CSS themes on demand
-3. Changes are are dynamically injected into the DOM
-4. Font faces are automatically loaded
-5. Your application updates with a real-time preview
-6. You can copy the current theme or install it with the shadcn CLI
-
 ## Quickstart
 
 Initialize the theme editor via CDN.
@@ -71,9 +62,16 @@ export default function App() {
 
 </Tabs>
 
+**This line of code is all you need to start using the theme editor.**
+
+- A button that activates it will appear in the bottom center of your screen
+- StyleGlide generates Tailwind CSS palettes and shadcn/ui themes on demand
+- Your application updates with a real-time preview
+- You can copy the current theme or install it with the shadcn CLI
+
 **What the CDN install handles automatically:**
 
-- Checks `dark` class on `<html>` for mode toggle integration
+- Checks `dark` class on `<html>` and `theme` in `localStorage` for mode toggle integration
 - Detects CSS `channels` vs `colorSpace` format in CSS theme vars
 
 ## Manual Setup
@@ -139,7 +137,7 @@ export function ThemeEditor() {
 export function ThemeEditor() {
   useEffect(() => {
     themeEditor({
-      enabled: process.env === "development", // [!code highlight]
+      enabled: process.env.NODE_ENV === "development", // [!code highlight]
     });
   }, []);
 
@@ -152,7 +150,7 @@ export function ThemeEditor() {
 <Step>
 **Integrate light and dark mode**
 
-If your app has a `system` mode option, make sure to pass in the **resolved** mode of `light` or `dark`.
+If your app has `system` mode, make sure to pass in the **resolved** mode of `light` or `dark`.
 
 ```tsx title="components/theme-editor.tsx"
 // [!code highlight]
@@ -244,7 +242,7 @@ The main function to initialize the theme editor.
 themeEditor(options: ThemeEditorOptions): void
 ```
 
-### `ThemeEditorOptions`
+### `type ThemeEditorOptions`
 
 An object containing the configuration for the theme editor.
 

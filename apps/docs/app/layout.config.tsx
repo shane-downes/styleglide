@@ -1,6 +1,8 @@
 import { Logo } from "@workspace/ui/components/logo";
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 
+const appUrl = process.env.NEXT_PUBLIC_WEB_APP_URL || "https://styleglide.ai";
+
 /**
  * Shared layout configurations
  *
@@ -10,7 +12,13 @@ import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
  */
 export const baseOptions: BaseLayoutProps = {
   nav: {
-    title: <Logo className="h-6" />,
+    // Avoid auto target _blank on external href
+    title: false,
+    children: (
+      <a href={appUrl}>
+        <Logo className="h-6 md:hidden" />
+      </a>
+    ),
   },
   // see https://fumadocs.dev/docs/ui/navigation/links
   links: [],

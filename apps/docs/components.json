@@ -5,16 +5,16 @@
 	"tsx": true,
 	"tailwind": {
 		"config": "",
-		"css": "src/styles/globals.css",
+		"css": "../../packages/ui/src/styles/globals.css",
 		"baseColor": "zinc",
 		"cssVariables": true
 	},
 	"iconLibrary": "lucide",
 	"aliases": {
-		"components": "@workspace/ui/components",
+		"components": "@/components",
+		"hooks": "@/hooks",
+		"lib": "@/lib",
 		"utils": "@workspace/ui/lib/utils",
-		"hooks": "@workspace/ui/hooks",
-		"lib": "@workspace/ui/lib",
 		"ui": "@workspace/ui/components"
 	}
 }

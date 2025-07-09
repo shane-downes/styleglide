@@ -1,0 +1,48 @@
+@import "@workspace/ui/globals.css";
+@import "fumadocs-ui/css/shadcn.css";
+@import "fumadocs-ui/css/preset.css";
+@import "fumadocs-twoslash/twoslash.css";
+
+@theme inline {
+  --font-display: var(--display-family);
+}
+
+h1 {
+  @apply font-display font-semibold font-stretch-106%;
+}
+h2 {
+  @apply font-display font-medium tracking-tight;
+}
+h3,
+h4,
+h5,
+h6 {
+  @apply font-medium;
+}
+
+.prose td {
+  --tw-prose-code: var(--primary);
+}
+.dark .prose td {
+  --tw-prose-code: var(--primary);
+}
+
+.shiki:not(.not-fumadocs-codeblock *) .highlighted {
+  @apply bg-secondary;
+}
+
+#nd-sidebar {
+  @apply bg-sidebar;
+}
+
+@layer base {
+  pre {
+    @apply text-sm font-light tracking-wide;
+  }
+  .fd-step {
+    @apply my-12;
+  }
+  .fd-step:before {
+    @apply border;
+  }
+}

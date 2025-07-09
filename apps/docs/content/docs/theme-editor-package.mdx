@@ -1,0 +1,256 @@
+---
+title: "@styleglide/theme-editor"
+description: You can load the StyleGlide theme editor into any app that uses the shadcn/ui design system with this lightweight, zero dependancy JS package.
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps";
+import {
+  Tabs as TabsCn,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@workspace/ui/components/tabs";
+
+## How It Works
+
+1. A button is loaded into your app that activates the theme editor
+2. StyleGlide generates shadcn/ui CSS themes on demand
+3. Changes are are dynamically injected into the DOM
+4. Font faces are automatically loaded
+5. Your application updates with a real-time preview
+6. You can copy the current theme or install it with the shadcn CLI
+
+## Quickstart
+
+Initialize the theme editor via CDN.
+
+<Tabs groupId='setup-type' persist items={['Next.js', 'HTML']}>
+
+```html tab="HTML" title="index.html"
+<html lang="en">
+  <head>
+    <!-- Add to your HTML head -->
+    <!-- [!code highlight] -->
+    <script defer src="https://unpkg.com/@styleglide/theme-editor"></script>
+  </head>
+  <body>
+    <!-- ... -->
+  </body>
+</html>
+```
+
+```jsx tab="Next.js" title="layout.tsx"
+import Script from "next/script";
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <head>
+        // [!code highlight]
+        <Script src="https://unpkg.com/@styleglide/theme-editor" />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+```jsx tab="React useEffect" title="App.tsx"
+import { useEffect } from "react";
+
+export default function App() {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://unpkg.com/@styleglide/theme-editor/dist/auto.min.js";
+    document.head.appendChild(script);
+  }, []);
+
+  return <div>Your app</div>;
+}
+```
+
+</Tabs>
+
+**What the CDN install handles automatically:**
+
+- Checks `dark` class on `<html>` for mode toggle integration
+- Detects CSS `channels` vs `colorSpace` format in CSS theme vars
+
+## Manual Setup
+
+For more control over how the theme editor is initialized, you can install the package via NPM.
+
+For this example we'll use the Next.js App Router, but the basics remain the same for any React app.
+
+<Callout>
+  Note: React is not required to run the theme editor. In fact, you can even use
+  it with shadcn/ui ports that use more traditional web stacks such as
+  [basecoat](https://basecoatui.com/).
+</Callout>
+
+<Steps>
+<Step>
+**Install the package**
+
+<Tabs groupId='package-manager' persist items={['pnpm', 'npm', 'yarn', 'bun']}>
+
+```bash tab="pnpm"
+pnpm add @styleglide/theme-editor
+```
+
+```bash tab="npm"
+npm install @styleglide/theme-editor
+```
+
+```bash tab="yarn"
+yarn add @styleglide/theme-editor
+```
+
+```bash tab="bun"
+bun add @styleglide/theme-editor
+```
+
+</Tabs>
+</Step>
+
+<Step>
+**Setup a component to import and initialize the theme editor**
+
+```tsx title="components/theme-editor.tsx"
+"use client";
+
+import { themeEditor } from "@styleglide/theme-editor";
+
+export function ThemeEditor() {
+  useEffect(() => {
+    themeEditor();
+  }, []);
+
+  return null;
+}
+```
+
+</Step>
+
+<Step>
+**Control initialization with the enabled prop**
+
+```tsx title="components/theme-editor.tsx"
+export function ThemeEditor() {
+  useEffect(() => {
+    themeEditor({
+      enabled: process.env === "development", // [!code highlight]
+    });
+  }, []);
+
+  return null;
+}
+```
+
+</Step>
+
+<Step>
+**Integrate light and dark mode**
+
+If your app has a `system` mode option, make sure to pass in the **resolved** mode of `light` or `dark`.
+
+```tsx title="components/theme-editor.tsx"
+// [!code highlight]
+import { useTheme } from "next-themes";
+
+export function ThemeEditor() {
+  // [!code highlight]
+  const { setTheme, resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    themeEditor({
+      enabled: process.env.NODE_ENV === "development",
+      // [!code highlight]
+      onChangeMode: setTheme,
+      // [!code highlight]
+      resolvedMode: resolvedTheme, // "light" | "dark"
+    });
+    // [!code highlight]
+  }, [resolvedTheme, setTheme]);
+
+  return null;
+}
+```
+
+</Step>
+
+<Step>
+**Set the CCS color format to match your shadcn/ui theme vars**
+
+The default format is `colorSpace` and works for vars that include the color space function like `hsl(0 0% 45.1%)` or `oklch(0.56 0.00 0)`. This is typical for Tailwind **v4**.
+
+Use `channels` if your vars use look like `0 0% 45.1%`. This is typical for Tailwind **v3**.
+
+```tsx title="components/theme-editor.tsx"
+export function ThemeEditor() {
+  const { setTheme, resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    themeEditor({
+      enabled: process.env.NODE_ENV === "development",
+      onChangeMode: setTheme,
+      resolvedMode: resolvedTheme,
+      // [!code highlight]
+      cssColorFormat: "channels", // "channels" | "colorSpace"
+    });
+  }, [resolvedTheme, setTheme]);
+
+  return null;
+}
+```
+
+</Step>
+
+<Step>
+**Add the theme editor component to your root layout**
+
+Make sure to place it as a child of your light/dark mode provider.
+
+```tsx title="layout.tsx"
+import { ReactNode } from "react";
+import { ThemeEditor } from "@/components/theme-editor";
+import { ThemeProvider } from "next-themes";
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <ThemeProvider>
+          // [!code highlight]
+          <ThemeEditor />
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+</Step>
+</Steps>
+
+## API Reference
+
+### `themeEditor`
+
+The main function to initialize the theme editor.
+
+```typescript
+themeEditor(options: ThemeEditorOptions): void
+```
+
+### `ThemeEditorOptions`
+
+An object containing the configuration for the theme editor.
+
+| Property         | Type                                | Default        |
+| ---------------- | ----------------------------------- | -------------- |
+| `resolvedMode`   | `'light' \| 'dark'`                 | `'light'`      |
+| `onChangeMode`   | `(mode: 'light' \| 'dark') => void` | -              |
+| `enabled`        | `boolean`                           | `true`         |
+| `cssColorFormat` | `'channels' \| 'colorSpace'`        | `'colorSpace'` |

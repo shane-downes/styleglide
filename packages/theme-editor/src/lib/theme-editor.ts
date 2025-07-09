@@ -11,8 +11,8 @@ import type { ResolvedOptions, ThemeEditorOptions } from "./types";
 let prevProps: ResolvedOptions | null = null;
 let isInitialized = false;
 
-export function themeEditor(options: ThemeEditorOptions = defaultOptions) {
-  const props = options as ResolvedOptions;
+export function themeEditor(options: ThemeEditorOptions = {}) {
+  const props = { ...defaultOptions, ...options } satisfies ResolvedOptions;
 
   const { enabled } = props;
 

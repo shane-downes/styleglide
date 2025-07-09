@@ -1,5 +1,5 @@
 {
-  "name": "shadcn-ui-monorepo",
+  "name": "styleglide",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -9,8 +9,10 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.4",
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
+    "eslint": "^9.20.1",
     "prettier": "^3.5.1",
     "prettier-plugin-tailwindcss": "^0.6.13",
     "tailwindcss": "^4.1.7",

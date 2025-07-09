@@ -7,6 +7,7 @@
     "build": "next build",
     "dev": "next dev --turbo -p 3001",
     "start": "next start",
+    "lint": "eslint . --max-warnings 0",
     "postinstall": "fumadocs-mdx"
   },
   "dependencies": {

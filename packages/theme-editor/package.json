@@ -17,8 +17,7 @@
   "scripts": {
     "build": "tsup",
     "lint": "eslint . --max-warnings 0",
-    "push": "pnpm run build && yalc push",
-    "release": "pnpm run build && changeset publish"
+    "push": "pnpm run build && yalc push"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:^",

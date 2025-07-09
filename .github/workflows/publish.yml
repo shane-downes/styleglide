@@ -26,13 +26,14 @@ jobs:
           cache: "pnpm"
 
       - run: pnpm install --frozen-lockfile
+      - run: npx turbo build --filter=@styleglide/theme-editor
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
         with:
           commit: "chore(release): version packages"
           title: "chore(release): version packages"
-          publish: npx turbo release
+          publish: npx changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

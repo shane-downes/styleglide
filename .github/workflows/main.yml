@@ -1,0 +1,26 @@
+name: CI
+on:
+  push:
+    branches:
+      - "**"
+    paths:
+      - "packages/theme-editor/**"
+      - ".github/workflows/main.yml"
+      - "pnpm-lock.yaml"
+      - "turbo.json"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 9
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: "pnpm"
+
+      - run: pnpm install --frozen-lockfile
+      - run: turbo run lint build --filter=@styleglide/theme-editor

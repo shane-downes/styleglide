@@ -18,7 +18,7 @@
 }
 
 h1 {
-  @apply font-display font-medium tracking-tight font-stretch-106%;
+  @apply font-display font-semibold tracking-tight font-stretch-106%;
 }
 h2 {
   @apply font-display font-medium tracking-tight;

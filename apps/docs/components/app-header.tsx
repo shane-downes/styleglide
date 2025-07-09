@@ -6,8 +6,8 @@ import { Logo } from "@workspace/ui/components/logo";
 import { cn } from "@workspace/ui/lib/utils";
 import { Button, buttonVariants } from "@workspace/ui/components/button";
 import { MoonIcon, SunIcon } from "lucide-react";
-import { useId } from "react";
 import { LayoutGroup, motion } from "motion/react";
+import { useId } from "react";
 
 const appUrl = process.env.NEXT_PUBLIC_WEB_APP_URL || "https://styleglide.ai";
 
@@ -25,11 +25,10 @@ const nav = [
   { label: "Theme Editor", url: `${appUrl}/themes` },
 ];
 
-export function AppHeader({
-  children,
-  ...props
-}: React.ComponentProps<typeof Header>) {
-  const { isDark, toggleMode } = useMode();
+export function AppHeader(
+  props: Omit<React.ComponentProps<typeof Header>, "children">,
+) {
+  const { toggleMode } = useMode();
 
   return (
     <Header {...props}>
@@ -54,8 +53,10 @@ export function AppHeader({
           onClick={toggleMode}
           className="size-8 text-base transition-none md:text-sm [&_svg]:size-4 [&_svg]:text-muted-foreground"
           variant="ghost"
+          suppressHydrationWarning
         >
-          {isDark ? <SunIcon /> : <MoonIcon />}
+          <SunIcon className="dark:hidden" />
+          <MoonIcon className="hidden dark:block" />
         </Button>
       </Navbar>
     </Header>
@@ -89,7 +90,7 @@ function Navbar({ className, ...props }: React.ComponentProps<"nav">) {
 }
 
 function NavbarSection({ className, ...props }: React.ComponentProps<"div">) {
-  let id = useId();
+  const id = useId();
 
   return (
     <LayoutGroup id={id}>

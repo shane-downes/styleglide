@@ -1,0 +1,5 @@
+{
+  "extends": "@workspace/typescript-config/js-library.json",
+  "include": ["."],
+  "exclude": ["node_modules", "dist"]
+}

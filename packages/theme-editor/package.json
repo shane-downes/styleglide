@@ -1,19 +1,41 @@
 {
   "name": "@styleglide/theme-editor",
-  "license": "MIT",
   "version": "0.0.12",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "unpkg": "dist/auto.min.js",
+  "description": "Add the StyleGlide theme editor to any shadcn/ui app",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "styleglide",
+    "style",
+    "glide",
+    "theme",
+    "editor",
+    "shadcn",
+    "ui",
+    "tailwind"
+  ],
+  "homepage": "https://docs.styleglide.ai/theme-editor-package",
+  "bugs": "https://forms.gle/8dDpirpZ8o2D2mTy8",
+  "license": "MIT",
+  "author": {
+    "name": "Shane Downes",
+    "url": "https://x.com/shanedownes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shane-downes/styleglide.git",
+    "directory": "packages/theme-editor"
+  },
   "files": [
     "dist/",
     "README.md",
     "LICENSE"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "unpkg": "dist/auto.min.js",
   "scripts": {
     "build": "tsup",
     "lint": "eslint . --max-warnings 0",

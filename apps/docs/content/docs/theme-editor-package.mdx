@@ -1,6 +1,6 @@
 ---
 title: "@styleglide/theme-editor"
-description: You can load the StyleGlide theme editor into any app that uses the shadcn/ui design system with this lightweight, zero dependency JS package.
+description: You can load the StyleGlide theme editor into any app that uses the shadcn/ui design system with this lightweight, zero-dependency JS package.
 ---
 
 import { Step, Steps } from "fumadocs-ui/components/steps";
@@ -43,20 +43,6 @@ export default function RootLayout({ children }) {
       <body>{children}</body>
     </html>
   );
-}
-```
-
-```jsx tab="React useEffect" title="App.tsx"
-import { useEffect } from "react";
-
-export default function App() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://unpkg.com/@styleglide/theme-editor/dist/auto.min.js";
-    document.head.appendChild(script);
-  }, []);
-
-  return <div>Your app</div>;
 }
 ```
 
@@ -112,7 +98,7 @@ bun add @styleglide/theme-editor
 </Step>
 
 <Step>
-**Setup a component to import and initialize the theme editor**
+**Set up a component to import and initialize the theme editor**
 
 ```tsx title="components/theme-editor.tsx"
 "use client";
@@ -178,11 +164,11 @@ export function ThemeEditor() {
 </Step>
 
 <Step>
-**Set the CCS color format to match your shadcn/ui theme vars**
+**Set the CSS color format to match your shadcn/ui theme vars**
 
 The default format is `colorSpace` and works for vars that include the color space function like `hsl(0 0% 45.1%)` or `oklch(0.56 0.00 0)`. This is typical for Tailwind **v4**.
 
-Use `channels` if your vars use look like `0 0% 45.1%`. This is typical for Tailwind **v3**.
+Use `channels` if your vars look like `0 0% 45.1%`. This is typical for Tailwind **v3**.
 
 ```tsx title="components/theme-editor.tsx"
 export function ThemeEditor() {

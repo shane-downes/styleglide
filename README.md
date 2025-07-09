@@ -1,31 +1,61 @@
-# shadcn/ui monorepo template
+# StyleGlide
 
-This template is for creating a monorepo with shadcn/ui.
+[StyleGlide](https://styleglide.ai/) is an AI-powered theme editor for shadcn/ui apps that allows you to create your own Tailwind CSS design system.
 
-## Usage
+The original [theme editor](https://styleglide.ai/themes) features preset apps from sources like [ui.shadcn.com](https://ui.shadcn.com/) and [shadcnblocks.com](https://www.shadcnblocks.com/template/mainline?via=styleglide) that you can select for real-time previews.
 
-```bash
-pnpm dlx shadcn@latest init
+This repository introduces open-source tools to embed the theme editor into your own application.
+
+## Packages
+
+- **[@styleglide/theme-editor](./packages/theme-editor)**
+
+## Apps
+
+- **[docs.styleglide.ai](./apps/docs)**
+
+## Quickstart
+
+Add the theme editor to any shadcn/ui app via CDN:
+
+```html
+<script defer src="https://unpkg.com/@styleglide/theme-editor"></script>
 ```
 
-## Adding components
+### Manual Installation
 
-To add components to your app, run the following command at the root of your `web` app:
+For more control, install the package:
 
 ```bash
-pnpm dlx shadcn@latest add button -c apps/web
+pnpm add @styleglide/theme-editor
 ```
 
-This will place the ui components in the `packages/ui/src/components` directory.
+See the [theme editor documentation](https://docs.styleglide.ai/theme-editor-package) for detailed setup instructions.
 
-## Tailwind
+## Development
 
-Your `tailwind.config.ts` and `globals.css` are already set up to use the components from the `ui` package.
+This is a monorepo managed with [Turborepo](https://turbo.build/) and [pnpm](https://pnpm.io/).
 
-## Using components
+### Setup
 
-To use the components in your app, import them from the `ui` package.
+```bash
+pnpm install
+```
 
-```tsx
-import { Button } from "@workspace/ui/components/button"
+### Development
+
+```bash
+turbo dev
+```
+
+### Build
+
+```bash
+turbo build
+```
+
+### Linting
+
+```bash
+turbo lint
 ```

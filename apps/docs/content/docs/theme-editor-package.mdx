@@ -36,11 +36,11 @@ import Script from "next/script";
 export default function RootLayout({ children }) {
   return (
     <html>
-      <head>
+      <body>
         // [!code highlight]
         <Script src="https://unpkg.com/@styleglide/theme-editor" />
-      </head>
-      <body>{children}</body>
+        {children}
+      </body>
     </html>
   );
 }

@@ -11,6 +11,9 @@ export function initHotkeys({ origin }: Pick<ResolvedOptions, "origin">) {
   cleanupHotkeys();
 
   function handleKeyDown(event: KeyboardEvent) {
+    if (isInputEvent(event)) {
+      return;
+    }
     const keyCombo = buildKeyCombo(event);
 
     if (HOTKEYS.includes(keyCombo)) {
@@ -25,7 +28,7 @@ export function initHotkeys({ origin }: Pick<ResolvedOptions, "origin">) {
   window.addEventListener("keydown", handleKeyDown);
 
   currentListeners.push(() =>
-    window.removeEventListener("keydown", handleKeyDown)
+    window.removeEventListener("keydown", handleKeyDown),
   );
 }
 
@@ -49,4 +52,9 @@ function buildKeyCombo(event: KeyboardEvent) {
     parts.push(key);
   }
   return parts.join("+");
+}
+
+function isInputEvent(event: KeyboardEvent) {
+  const element = event.target as HTMLElement;
+  return element.matches("input, select, textarea, [contenteditable]");
 }

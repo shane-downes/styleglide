@@ -1,6 +1,6 @@
 {
   "name": "@styleglide/theme-editor",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Add the StyleGlide theme editor to any shadcn/ui app",
   "publishConfig": {
     "access": "public"

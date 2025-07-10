@@ -6,6 +6,7 @@ on:
     paths:
       - "packages/theme-editor/**"
       - ".github/workflows/main.yml"
+      - ".changeset/**"
       - "pnpm-lock.yaml"
       - "turbo.json"
 

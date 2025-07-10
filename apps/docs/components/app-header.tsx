@@ -1,12 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import { useMode } from "@/hooks/use-mode";
+import { config } from "@/lib/config";
+import { Button, buttonVariants } from "@workspace/ui/components/button";
 import { Logo } from "@workspace/ui/components/logo";
 import { cn } from "@workspace/ui/lib/utils";
-import { Button, buttonVariants } from "@workspace/ui/components/button";
 import { MoonIcon, SunIcon } from "lucide-react";
 import { LayoutGroup, motion } from "motion/react";
+import Link from "next/link";
 import { useId } from "react";
 
 const appUrl = process.env.NEXT_PUBLIC_WEB_APP_URL || "https://styleglide.ai";
@@ -18,8 +19,13 @@ const nav = [
     current: true,
   },
   {
+    label: "GitHub",
+    url: config.urls.github,
+    target: "_blank",
+  },
+  {
     label: "Feedback",
-    url: "https://forms.gle/8dDpirpZ8o2D2mTy8",
+    url: config.urls.feedback,
     target: "_blank",
   },
   { label: "Theme Editor", url: `${appUrl}/themes` },

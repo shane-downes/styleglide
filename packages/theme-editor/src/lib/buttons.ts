@@ -2,7 +2,7 @@ import { createLogo } from "./logo";
 import type { ResolvedOptions } from "./types";
 import { isDesktop, setStyles } from "./utils";
 
-export function createOpenButton(): HTMLButtonElement {
+export function createOpenButton() {
   const button = document.createElement("button");
   setStyles(button, style.base, style.hidden, style.open);
 
@@ -87,7 +87,7 @@ export function onClick(button: HTMLButtonElement, handler: () => void) {
   button.addEventListener("click", handler);
 }
 
-export function findCustomOpenButton(): HTMLButtonElement | null {
+export function findCustomOpenButton() {
   return document.querySelector<HTMLButtonElement>("[data-theme-editor-open]");
 }
 

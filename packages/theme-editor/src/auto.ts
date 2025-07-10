@@ -40,7 +40,6 @@ function createModeHandler() {
 
 function createAutoWrapper() {
   if (typeof window === "undefined") {
-    console.warn("StyleGlide auto-wrapper: window not available");
     return;
   }
 

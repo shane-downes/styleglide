@@ -1,5 +1,11 @@
 # @styleglide/theme-editor
 
+## 0.0.15
+
+### Patch Changes
+
+- 9a3134a: Fix hotkeys on inputs
+
 ## 0.0.14
 
 ### Patch Changes

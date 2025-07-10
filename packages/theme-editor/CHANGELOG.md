@@ -1,5 +1,11 @@
 # @styleglide/theme-editor
 
+## 0.0.14
+
+### Patch Changes
+
+- a9b72f5: Add options validation
+
 ## 0.0.13
 
 ### Patch Changes

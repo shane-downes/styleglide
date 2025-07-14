@@ -1,5 +1,11 @@
 # @styleglide/theme-editor
 
+## 0.0.16
+
+### Patch Changes
+
+- 8d59c46: Custom open button
+
 ## 0.0.15
 
 ### Patch Changes

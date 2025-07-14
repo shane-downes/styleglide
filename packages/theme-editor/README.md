@@ -32,10 +32,10 @@ import Script from "next/script";
 export default function RootLayout({ children }) {
   return (
     <html>
-      <head>
+      <body>
         <Script src="https://unpkg.com/@styleglide/theme-editor" />
-      </head>
-      <body>{children}</body>
+        {children}
+      </body>
     </html>
   );
 }
@@ -123,6 +123,14 @@ themeEditor({
   // ...
   cssColorFormat: "channels",
 });
+```
+
+### Custom Open Button
+
+By default, the theme editor creates a floating StyleGlide button to open the editor. You can use your own custom button instead by adding the `data-theme-editor-open` attribute:
+
+```html
+<button data-theme-editor-open>Open Theme Editor</button>
 ```
 
 ## API Reference

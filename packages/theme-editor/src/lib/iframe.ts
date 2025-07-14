@@ -104,7 +104,9 @@ function openIframe(origin: ResolvedOptions["origin"]) {
   setStyles(document.body, { overflow: "hidden" });
 
   showCloseButton(currentCloseButton);
-  hideOpenButton(currentOpenButton);
+  if (!isCustomOpenButton) {
+    hideOpenButton(currentOpenButton);
+  }
 
   postMessage(currentIframe, origin, {
     action: "iframeEditorOpened",

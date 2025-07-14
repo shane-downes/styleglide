@@ -1,7 +1,7 @@
 "use client";
 
 import { useMode } from "@/hooks/use-mode";
-import { config } from "@/lib/config";
+import { config } from "@/utils/config";
 import { Button, buttonVariants } from "@workspace/ui/components/button";
 import { Logo } from "@workspace/ui/components/logo";
 import { cn } from "@workspace/ui/lib/utils";

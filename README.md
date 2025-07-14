@@ -1,10 +1,12 @@
 # StyleGlide
 
-[StyleGlide](https://styleglide.ai/) is an AI-powered theme editor for shadcn/ui apps that allows you to create your own Tailwind CSS design system.
+[StyleGlide](https://styleglide.ai/) is an AI-powered theme editor for shadcn/ui apps that helps you create your own Tailwind CSS design system.
 
 The original [theme editor](https://styleglide.ai/themes) features preset apps from sources like [ui.shadcn.com](https://ui.shadcn.com/) and [shadcnblocks.com](https://www.shadcnblocks.com/template/mainline?via=styleglide) that you can select for real-time previews.
 
 This repository introduces open-source tools to embed the theme editor into your own application.
+
+<img src="./assets/demo.gif" alt="StyleGlide Demo" width="100%" />
 
 ## Packages
 

@@ -9,6 +9,7 @@ import { MoonIcon, SunIcon } from "lucide-react";
 import { LayoutGroup, motion } from "motion/react";
 import Link from "next/link";
 import { useId } from "react";
+import { ThemeSelector } from "./theme-selector";
 
 const appUrl = process.env.NEXT_PUBLIC_WEB_APP_URL || "https://styleglide.ai";
 
@@ -55,6 +56,7 @@ export function AppHeader(
           ))}
         </NavbarSection>
         <Spacer />
+        <ThemeSelector />
         <Button
           onClick={toggleMode}
           className="size-8 text-base transition-none md:text-sm [&_svg]:size-4 [&_svg]:text-muted-foreground"

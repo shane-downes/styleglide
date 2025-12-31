@@ -25,7 +25,11 @@ export function initIframe({
   origin,
   cssColorFormat,
   resolvedMode,
-}: Pick<ResolvedOptions, "origin" | "cssColorFormat" | "resolvedMode">) {
+  presets,
+}: Pick<
+  ResolvedOptions,
+  "origin" | "cssColorFormat" | "resolvedMode" | "presets"
+>) {
   const isClient = typeof window !== "undefined";
   const isEmbedded = isClient && window.location.search.includes("_embedded=1");
 
@@ -42,6 +46,11 @@ export function initIframe({
   const iframeUrl = new URL(`${origin}/themes`);
   iframeUrl.searchParams.set("url", currentUrl.toString());
   iframeUrl.searchParams.set("format", cssColorFormat);
+
+  // Add presets if provided
+  if (presets && presets.length > 0) {
+    iframeUrl.searchParams.set("presets", JSON.stringify(presets));
+  }
 
   iframe.src = iframeUrl.toString();
   iframe.allow = "clipboard-write";

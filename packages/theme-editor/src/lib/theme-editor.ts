@@ -45,7 +45,7 @@ export function themeEditor(options: ThemeEditorOptions = {}) {
   if (updated("resolvedMode")) {
     updateIframe(props);
   }
-  if (updated("cssColorFormat")) {
+  if (updated("cssColorFormat", "presets")) {
     cleanupIframe();
     initIframe(props);
   }
@@ -132,6 +132,13 @@ function validateOptions(options: ThemeEditorOptions) {
           validatedOptions.enabled = value;
         } else {
           warnInvalidOption({ key, expected: "boolean", received: value });
+        }
+        break;
+      case "presets":
+        if (Array.isArray(value)) {
+          validatedOptions.presets = value;
+        } else {
+          warnInvalidOption({ key, expected: "array", received: value });
         }
         break;
       default:

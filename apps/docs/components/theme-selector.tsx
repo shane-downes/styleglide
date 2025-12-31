@@ -74,7 +74,7 @@ export function ThemeSelector() {
           role="menu"
           aria-label="Theme options"
           className={cn(
-            "absolute top-full right-0 mt-2 z-50",
+            "absolute top-full right-0 mt-2 z-[100]",
             "min-w-[260px] overflow-hidden rounded-lg",
             "border border-border bg-popover shadow-lg",
             "animate-in fade-in-0 zoom-in-95",

@@ -147,9 +147,50 @@ themeEditor(options: ThemeEditorOptions): void
 
 An object containing the configuration for the theme editor.
 
-| Property         | Type                                | Default        |
-| ---------------- | ----------------------------------- | -------------- |
-| `resolvedMode`   | `'light' \| 'dark'`                 | `'light'`      |
-| `onChangeMode`   | `(mode: 'light' \| 'dark') => void` | -              |
-| `enabled`        | `boolean`                           | `true`         |
-| `cssColorFormat` | `'channels' \| 'colorSpace'`        | `'colorSpace'` |
+| Property         | Type                                | Default        | Description                                                                 |
+| ---------------- | ----------------------------------- | -------------- | --------------------------------------------------------------------------- |
+| `resolvedMode`   | `'light' \| 'dark'`                 | `'light'`      | The current color mode                                                      |
+| `onChangeMode`   | `(mode: 'light' \| 'dark') => void` | -              | Callback when the mode is changed in the theme editor                       |
+| `enabled`        | `boolean`                           | `true`         | Whether the theme editor is enabled                                         |
+| `cssColorFormat` | `'channels' \| 'colorSpace'`        | `'colorSpace'` | CSS color format used in your theme variables                               |
+| `presets`        | `PresetTheme[]`                     | -              | Optional array of preset themes to display in the theme editor             |
+
+### `type PresetTheme`
+
+An object defining a preset theme with colors for both light and dark modes.
+
+```typescript
+type PresetTheme = {
+  id: string;
+  name: string;
+  colors: {
+    light: Record<string, string>;
+    dark: Record<string, string>;
+  };
+};
+```
+
+**Example:**
+
+```tsx
+import { themeEditor, PresetTheme } from "@styleglide/theme-editor";
+
+const presets: PresetTheme[] = [
+  {
+    id: "ocean",
+    name: "Ocean",
+    colors: {
+      light: {
+        "--primary-500": "oklch(0.6 0.15 220)",
+        "--primary-600": "oklch(0.5 0.14 220)",
+      },
+      dark: {
+        "--primary-500": "oklch(0.6 0.15 220)",
+        "--primary-600": "oklch(0.5 0.14 220)",
+      },
+    },
+  },
+];
+
+themeEditor({ presets });
+```

@@ -3,6 +3,7 @@ import { Geist_Mono, Inter } from "next/font/google";
 import localFont from "next/font/local";
 import type { ReactNode } from "react";
 import "./global.css";
+import { ThemeEditorProvider } from "@/components/theme-editor-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,7 +28,10 @@ export default function Layout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
     >
       <body className="flex min-h-screen flex-col">
-        <RootProvider>{children}</RootProvider>
+        <RootProvider>
+          <ThemeEditorProvider />
+          {children}
+        </RootProvider>
       </body>
     </html>
   );
